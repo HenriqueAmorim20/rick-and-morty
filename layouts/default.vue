@@ -27,12 +27,18 @@ export default {
   --secondaryText: #f08d49;
   --neutralText: #282c2c;
   --primaryBackground: #282c2c;
+  --secondaryBackground: #454a4a;
+  --subtitleColor: #bcbcbc;
 }
 
 * {
   margin: 0;
   padding: 0;
   color: var(--primaryText);
+}
+
+body {
+  overflow: hidden !important;
 }
 
 .app {

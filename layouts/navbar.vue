@@ -66,6 +66,14 @@ export default {
         "--primaryBackground",
         isDark ? "#282c2c" : "#ebebeb"
       );
+      document.body.style.setProperty(
+        "--secondaryBackground",
+        isDark ? "#454a4a" : "#ffffff"
+      );
+      document.body.style.setProperty(
+        "--subtitleColor",
+        isDark ? "#bcbcbc" : "#656565"
+      );
     },
   },
 };
