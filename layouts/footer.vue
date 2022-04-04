@@ -1,6 +1,6 @@
 <template>
   <!-- Footer -->
-  <v-footer class="footer" color="#0f0e18">
+  <v-footer class="footer" color="transparent">
     <!-- Copyright data atual -->
     <span class="footer-text">
       All rights reserved Henrique Melo &copy;
@@ -40,41 +40,39 @@ export default {
 };
 </script>
 
-<style scoped>
-/* Inicio footer */
+<style scoped lang="scss">
 .footer {
   display: flex;
   align-items: center;
   padding: 3rem 1rem;
-}
 
-.footer-text {
-  width: 50%;
-  text-align: center;
-}
+  .footer-text {
+    width: 50%;
+    text-align: center;
+  }
+  .footer-media {
+    a {
+      text-decoration: none;
+      margin: 0 0.7rem;
+    }
+    .footer-media-icon {
+      font-size: 1.1rem;
+    }
 
-.footer-media a {
-  text-decoration: none;
-  margin: 0 0.7rem;
+    .footer-media-icon:hover {
+      color: var(--secondaryText);
+    }
+  }
 }
-
-.footer-media-icon {
-  font-size: 1.1rem;
-}
-
-.footer-media-icon:hover {
-  color: #f08d49;
-}
-/* Fim footer */
 
 /* Inicio media query mobile */
 @media (max-width: 750px) {
   .footer {
     flex-direction: column;
-  }
-  .footer-text {
-    width: 100%;
-    margin: 0 0 1rem 0;
+    .footer-text {
+      width: 100%;
+      margin: 0 0 1rem 0;
+    }
   }
 }
 /* Fim media query mobile */
