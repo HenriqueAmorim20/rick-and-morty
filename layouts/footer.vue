@@ -53,10 +53,12 @@ export default {
   .footer-media {
     a {
       text-decoration: none;
+      color: currentColor;
       margin: 0 0.7rem;
     }
     .footer-media-icon {
       font-size: 1.1rem;
+      color: currentColor;
     }
 
     .footer-media-icon:hover {

@@ -1,5 +1,6 @@
 <template>
   <v-app class="app">
+    <Navbar />
     <v-main>
       <Nuxt />
     </v-main>
@@ -8,11 +9,13 @@
 </template>
 
 <script>
+import Navbar from "./navbar.vue";
 import Footer from "./footer.vue";
 
 export default {
   name: "DefaultLayout",
   components: {
+    Navbar,
     Footer,
   },
 };
@@ -22,6 +25,7 @@ export default {
 :root {
   --primaryText: #fff;
   --secondaryText: #f08d49;
+  --neutralText: #282c2c;
   --primaryBackground: #282c2c;
 }
 
