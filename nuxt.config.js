@@ -24,6 +24,10 @@ export default {
     ],
   },
 
+  axios: {
+    baseURL: "https://rickandmortyapi.com/api"
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
