@@ -84,7 +84,6 @@ export default {
         this.character = await this.$axios.$get(
           "/character/" + this.characterId
         );
-        console.log(this.character);
       } catch (error) {
         console.log(error);
       }

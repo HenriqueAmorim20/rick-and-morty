@@ -46,34 +46,11 @@ export default {
     };
   },
   mounted() {
-    this.darkMode = localStorage.getItem("darkmode");
-    this.darkMode = this.darkMode === "true";
-    this.setTheme(this.darkMode);
+    this.darkMode = this.$store.state.theme.darkMode;
   },
   watch: {
     darkMode(newVal) {
-      localStorage.setItem("darkmode", newVal);
-      this.setTheme(newVal);
-    },
-  },
-  methods: {
-    setTheme(isDark) {
-      document.body.style.setProperty(
-        "--primaryText",
-        isDark ? "#ebebeb" : "#282c2c"
-      );
-      document.body.style.setProperty(
-        "--primaryBackground",
-        isDark ? "#282c2c" : "#ebebeb"
-      );
-      document.body.style.setProperty(
-        "--secondaryBackground",
-        isDark ? "#454a4a" : "#ffffff"
-      );
-      document.body.style.setProperty(
-        "--subtitleColor",
-        isDark ? "#bcbcbc" : "#656565"
-      );
+      this.$store.dispatch("theme/SET", newVal);
     },
   },
 };

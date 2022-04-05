@@ -4,7 +4,7 @@
       v-model="cName"
       :loading="loading"
       label="Character name"
-      
+      :light="!darkMode"
       clearable
       dense
       hide-details
@@ -16,7 +16,10 @@
       :items="statusList"
       :loading="loading"
       label="Character status"
-      
+      :light="!darkMode"
+      :menu-props="{
+        light: !darkMode,
+      }"
       clearable
       hide-details
       dense
@@ -28,7 +31,10 @@
       :items="genderList"
       :loading="loading"
       label="Character gender"
-      
+      :light="!darkMode"
+      :menu-props="{
+        light: !darkMode,
+      }"
       clearable
       hide-details
       dense
@@ -51,9 +57,16 @@ export default {
       cName: "",
       cStatus: null,
       cGender: null,
+      darkMode: false,
     };
   },
+  mounted() {
+    this.darkMode = this.$store.state.theme.darkMode;
+  },
   watch: {
+    "$store.state.theme.darkMode"(newVal) {
+      this.darkMode = newVal;
+    },
     computedFilters() {
       this.$emit("fetch", this.computedFilters);
     },

@@ -13,6 +13,7 @@
     <v-pagination
       v-model="page"
       :length="pages"
+      :light="!darkMode"
       total-visible="15"
       color="var(--secondaryText)"
       class="pagination"
@@ -38,13 +39,18 @@ export default {
       page: 1,
       pages: null,
       queryFilters: "",
+      darkMode: null,
     };
   },
   mounted() {
     this.fetchCharacters();
+    this.darkMode = this.$store.state.theme.darkMode;
   },
 
   watch: {
+    "$store.state.theme.darkMode"(newVal) {
+      this.darkMode = newVal;
+    },
     page() {
       this.changePage();
     },
@@ -72,7 +78,6 @@ export default {
         this.characters = results;
       } catch (error) {
         this.characters = [];
-        this.page = null;
         this.pages = null;
         this.loading = false;
         console.error(error);
