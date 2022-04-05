@@ -1,7 +1,9 @@
 <template>
   <div class="index">
     <h1>Search your character!</h1>
+    <!-- Filtros -->
     <Filters :loading="loading" @fetch="getFilters" />
+    <!-- Personagens -->
     <section class="characters">
       <Character
         v-for="(character, index) in characters"
@@ -10,6 +12,7 @@
       />
       <h3 v-if="characters.length === 0 && !loading">No results found...</h3>
     </section>
+    <!-- Paginação -->
     <v-pagination
       v-model="page"
       :length="pages"
@@ -48,15 +51,19 @@ export default {
   },
 
   watch: {
+    // Observa mudanças na store para o tema da aplicacao
     "$store.state.theme.darkMode"(newVal) {
       this.darkMode = newVal;
     },
+
+    // Observa mudanças na pagina
     page() {
       this.changePage();
     },
   },
 
   methods: {
+    // Pega os filtros vindo do component Filters e seta um delay para otimizar as requisicoes
     getFilters(filters) {
       this.loading = true;
       clearTimeout(this.timeout);
@@ -66,6 +73,7 @@ export default {
       }, 1000);
     },
 
+    // Busca todas as informações do personagem
     async fetchCharacters() {
       this.loading = true;
 
@@ -87,6 +95,7 @@ export default {
       this.loading = false;
     },
 
+    // Busca todas as informações do personagem a cada mudança de página. Obs: Foi feito um método diferente nesse caso, pois algumas requisições com pagina = 1 estavam dando problema (problema da api)
     async changePage() {
       this.loading = true;
 

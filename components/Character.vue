@@ -1,10 +1,14 @@
 <template>
+  <!-- Link para uma pagina com mais detalhes do personagem -->
   <NuxtLink :to="`/${character.id}`" style="text-decoration: none;">
     <v-card class="character-card" color="var(--secondaryBackground)">
+      <!-- Avatar do personagem -->
       <img :src="character.image" class="character-card-img" />
+      <!-- Informacoes do personagem -->
       <div class="character-info">
         <h2>{{ character.name }}</h2>
         <div class="status">
+          <!-- A classe varia de acordo com o status do personagem -->
           <div :class="['status-indicator', character.status]" />
           <span class="status-condition">{{ character.status }} -&nbsp;</span>
           <span class="status-type">{{ character.species }}</span>
@@ -37,6 +41,7 @@ export default {
     this.fetchInfo();
   },
   methods: {
+    // Busca informações da primeira aparição do personagem
     async fetchInfo() {
       try {
         this.firstEpisode = await this.$axios.$get(this.character.episode[0]);

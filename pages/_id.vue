@@ -1,21 +1,27 @@
 <template>
   <div class="main">
+    <!-- Link para a pagina principal -->
     <NuxtLink class="back" to="/">
       <v-btn class="back-btn">
         <v-icon color="#fff">mdi-arrow-left</v-icon>
         <span>Home</span>
       </v-btn>
     </NuxtLink>
+    <!-- Barra de carregamento -->
     <v-progress-linear
       v-if="loading"
       color="var(--secondaryText)"
       indeterminate
     />
+    <!-- Personagem -->
     <div v-if="!loading" class="character">
+      <!-- Avatar do personagem -->
       <img class="character-img" :src="character.image" />
+      <!-- Informacoes do personagem -->
       <div class="character-content">
         <h1>{{ character.name }}</h1>
         <div class="character-status">
+          <!-- A classe varia de acordo com o status do personagem -->
           <div :class="['character-status-indicator', character.status]" />
           <span class="character-status-condition"
             >{{ character.status }} -&nbsp;</span
@@ -62,6 +68,7 @@
 <script>
 export default {
   name: "DynamicCharacterPage",
+  // Dados assíncronos -> pega o id na rota
   async asyncData({ params }) {
     const characterId = params.id;
     return { characterId };
@@ -79,6 +86,7 @@ export default {
     this.fetchCharacter();
   },
   methods: {
+    // Busca todas as informações daquele personagem pelo id
     async fetchCharacter() {
       try {
         this.character = await this.$axios.$get(
@@ -91,6 +99,7 @@ export default {
       this.loading = false;
     },
 
+    // Busca informações da primeira aparição do personagem
     async fetchInfo() {
       try {
         this.firstEpisode = await this.$axios.$get(this.character.episode[0]);

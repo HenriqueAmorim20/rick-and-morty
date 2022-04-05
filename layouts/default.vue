@@ -22,6 +22,7 @@ export default {
 </script>
 
 <style lang="scss">
+// Variaveis globais
 :root {
   --primaryText: #fff;
   --secondaryText: #f08d49;

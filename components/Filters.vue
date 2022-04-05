@@ -1,5 +1,6 @@
 <template>
   <section class="filters">
+    <!-- Filtro de nome -->
     <v-text-field
       v-model="cName"
       :loading="loading"
@@ -11,6 +12,7 @@
       color="var(--secondaryText)"
       class="filters-field"
     />
+    <!-- Filtro de status -->
     <v-select
       v-model="cStatus"
       :items="statusList"
@@ -26,6 +28,7 @@
       color="var(--secondaryText)"
       class="filters-field"
     />
+    <!-- Filtro de genero -->
     <v-select
       v-model="cGender"
       :items="genderList"
@@ -64,14 +67,17 @@ export default {
     this.darkMode = this.$store.state.theme.darkMode;
   },
   watch: {
+    // Observa mudanças na store para o tema da aplicacao
     "$store.state.theme.darkMode"(newVal) {
       this.darkMode = newVal;
     },
+    // Ao mudar qualquer variável dentro do filtro computado, é emitido um evendo ao component pai
     computedFilters() {
       this.$emit("fetch", this.computedFilters);
     },
   },
   computed: {
+    // Filtros agrupados em uma variável
     computedFilters() {
       let filtros = "";
 

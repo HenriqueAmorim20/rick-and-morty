@@ -1,8 +1,10 @@
 export const state = () => ({
+  // Tenta buscar na localStorage um valor, default é true
   darkMode: window.localStorage.getItem("darkMode") === "false" ? false : true,
 });
 
 export const mutations = {
+  // Seta o estado da variável e também algumas propriedades de cor da aplicação
   SET(state, darkMode) {
     state.darkMode = darkMode;
     document.body.style.setProperty(
@@ -25,6 +27,7 @@ export const mutations = {
 };
 
 export const actions = {
+  // Ação que seta o estado
   SET(state, darkMode) {
     return new Promise((resolve) => {
       state.commit("SET", darkMode);
