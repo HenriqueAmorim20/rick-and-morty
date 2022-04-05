@@ -32,6 +32,7 @@ export default {
   },
   data() {
     return {
+      timeout: null,
       characters: [],
       loading: true,
       page: 1,
@@ -45,34 +46,44 @@ export default {
 
   watch: {
     page() {
-      this.fetchCharacters();
+      this.changePage();
     },
   },
 
   methods: {
     getFilters(filters) {
-      this.queryFilters = filters;
-      this.fetchCharacters();
+      this.loading = true;
+      clearTimeout(this.timeout);
+      this.timeout = setTimeout(() => {
+        this.queryFilters = filters;
+        this.fetchCharacters();
+      }, 1000);
     },
 
     async fetchCharacters() {
       this.loading = true;
 
       try {
-        const { info } = await this.$axios.$get(
+        const { info, results } = await this.$axios.$get(
           "/character/?" + this.queryFilters
         );
+        this.page = 1;
         this.pages = info.pages;
+        this.characters = results;
       } catch (error) {
         this.characters = [];
-        this.page = 1;
+        this.page = null;
         this.pages = null;
         this.loading = false;
         console.error(error);
         return;
       }
 
-      this.page = this.page > this.pages ? this.pages : this.page;
+      this.loading = false;
+    },
+
+    async changePage() {
+      this.loading = true;
 
       try {
         const { results } = await this.$axios.$get(
@@ -80,9 +91,6 @@ export default {
         );
         this.characters = results;
       } catch (error) {
-        this.characters = [];
-        this.page = 1;
-        this.pages = null;
         console.error(error);
       }
 

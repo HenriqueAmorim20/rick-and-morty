@@ -4,7 +4,7 @@
       v-model="cName"
       :loading="loading"
       label="Character name"
-      outlined
+      
       clearable
       dense
       hide-details
@@ -16,7 +16,7 @@
       :items="statusList"
       :loading="loading"
       label="Character status"
-      outlined
+      
       clearable
       hide-details
       dense
@@ -28,7 +28,7 @@
       :items="genderList"
       :loading="loading"
       label="Character gender"
-      outlined
+      
       clearable
       hide-details
       dense
@@ -46,7 +46,6 @@ export default {
   },
   data() {
     return {
-      timeout: null,
       genderList: ["Female", "Male", "Genderless", "unknown"],
       statusList: ["Alive", "Dead", "unknown"],
       cName: "",
@@ -56,10 +55,7 @@ export default {
   },
   watch: {
     computedFilters() {
-      clearTimeout(this.timeout);
-      this.timeout = setTimeout(() => {
-        this.$emit("fetch", this.computedFilters);
-      }, 1000);
+      this.$emit("fetch", this.computedFilters);
     },
   },
   computed: {

@@ -6,7 +6,7 @@
         <span>Home</span>
       </v-btn>
     </NuxtLink>
-    <v-card class="character" flat color="transparent" :loading="loading">
+    <div class="character">
       <template slot="progress">
         <v-progress-linear color="var(--secondaryText)" indeterminate />
       </template>
@@ -38,7 +38,7 @@
           <div class="character-content-info-section">
             <div class="character-content-info-section-item">
               <span class="subtitle">Type</span>
-              <span class="content">{{ character.type }}</span>
+              <span class="content">{{ character.type || "-" }}</span>
             </div>
             <div class="character-content-info-section-item">
               <span class="subtitle">First seen in</span>
@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-    </v-card>
+    </div>
   </div>
 </template>
 
@@ -132,6 +132,8 @@ export default {
 
     .character-img {
       object-fit: cover;
+      object-position: center;
+      border-radius:10px;
       border: 3px solid var(--secondaryText);
     }
     .character-content {
@@ -186,6 +188,8 @@ export default {
             .subtitle {
               color: var(--subtitleColor);
               font-size: clamp(0.9rem, 4vw, 1.2rem);
+              margin-right: 0.5rem;
+              text-align: left;
             }
 
             .content {
@@ -219,6 +223,10 @@ export default {
             flex-direction: row !important;
             justify-content: space-between;
             width: 100% !important;
+
+            .content {
+              text-align: right;
+            }
           }
         }
       }
