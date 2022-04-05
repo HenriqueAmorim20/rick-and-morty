@@ -92,7 +92,9 @@ export default {
 
       try {
         const { results } = await this.$axios.$get(
-          "/character/?page=" + this.page + this.queryFilters
+          `/character/?${this.page > 1 ? "page=" + this.page : ""}${
+            this.queryFilters
+          }`
         );
         this.characters = results;
       } catch (error) {
@@ -121,14 +123,6 @@ export default {
     align-self: flex-start;
     font-weight: 300;
   }
-  .filters {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin: 2rem 0;
-  }
-
   .characters {
     width: 100%;
     display: grid;
