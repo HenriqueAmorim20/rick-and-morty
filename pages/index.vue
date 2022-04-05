@@ -13,10 +13,10 @@
     <v-pagination
       v-model="page"
       :length="pages"
-      total-visible="10"
+      total-visible="15"
       color="var(--secondaryText)"
       class="pagination"
-    ></v-pagination>
+    />
   </div>
 </template>
 
