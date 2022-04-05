@@ -6,12 +6,14 @@
         <span>Home</span>
       </v-btn>
     </NuxtLink>
-    <div class="character">
-      <template slot="progress">
-        <v-progress-linear color="var(--secondaryText)" indeterminate />
-      </template>
-      <img v-if="!loading" class="character-img" :src="character.image" />
-      <div v-if="!loading" class="character-content">
+    <v-progress-linear
+      v-if="loading"
+      color="var(--secondaryText)"
+      indeterminate
+    />
+    <div v-if="!loading" class="character">
+      <img class="character-img" :src="character.image" />
+      <div class="character-content">
         <h1>{{ character.name }}</h1>
         <div class="character-status">
           <div :class="['character-status-indicator', character.status]" />
@@ -133,7 +135,7 @@ export default {
     .character-img {
       object-fit: cover;
       object-position: center;
-      border-radius:10px;
+      border-radius: 10px;
       border: 3px solid var(--secondaryText);
     }
     .character-content {
