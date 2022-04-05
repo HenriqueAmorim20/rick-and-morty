@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="`/${character.id}`" style="text-decoration: none">
+  <NuxtLink :to="`/${character.id}`" style="text-decoration: none;">
     <v-card class="character-card" color="var(--secondaryBackground)">
       <img :src="character.image" class="character-card-img" />
       <div class="character-info">
@@ -52,6 +52,7 @@ export default {
 .character-card {
   display: flex;
   overflow: hidden;
+  height: 100%;
 
   .character-card-img {
     width: 40%;
