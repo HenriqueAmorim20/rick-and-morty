@@ -1,5 +1,5 @@
 export const state = () => ({
-  darkMode: window.localStorage.getItem("darkMode") === "true" ? true : false,
+  darkMode: window.localStorage.getItem("darkMode") === "false" ? false : true,
 });
 
 export const mutations = {
